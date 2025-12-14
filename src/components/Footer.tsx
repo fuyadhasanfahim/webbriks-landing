@@ -3,6 +3,9 @@
 import { motion } from 'framer-motion';
 import { IconPhone } from '@tabler/icons-react';
 import Image from 'next/image';
+import { useState } from 'react';
+import { useContactForm } from '@/hooks/useContactForm';
+import ReCaptchaWrapper from './ReCaptchaWrapper';
 
 const fadeInUp = {
     hidden: { opacity: 0, y: 30 },
@@ -28,6 +31,15 @@ const staggerContainer = {
 };
 
 export default function Footer() {
+    const { formData, isSubmitting, handleInputChange, handleCheckboxChange, submitForm } = useContactForm();
+    const [turnstileToken, setTurnstileToken] = useState<string>('');
+
+    const handleSubmit = async (e: React.FormEvent) => {
+        e.preventDefault();
+        await submitForm(turnstileToken || undefined);
+        setTurnstileToken('');
+    };
+
     return (
         <div className="relative w-full min-h-screen overflow-hidden">
             {/* Dark gradient background */}
@@ -141,6 +153,7 @@ export default function Footer() {
                                         initial="hidden"
                                         whileInView="visible"
                                         viewport={{ once: true }}
+                                        onSubmit={handleSubmit}
                                     >
                                         <div className="grid gap-4 font-inter">
                                             <motion.div
@@ -155,9 +168,13 @@ export default function Footer() {
                                                 </label>
                                                 <input
                                                     id="footer-name"
+                                                    name="name"
                                                     type="text"
                                                     placeholder="Name"
                                                     className="input"
+                                                    value={formData.name}
+                                                    onChange={handleInputChange}
+                                                    required
                                                 />
                                             </motion.div>
 
@@ -173,9 +190,13 @@ export default function Footer() {
                                                 </label>
                                                 <input
                                                     id="footer-email"
+                                                    name="email"
                                                     type="email"
                                                     placeholder="Email"
                                                     className="input"
+                                                    value={formData.email}
+                                                    onChange={handleInputChange}
+                                                    required
                                                 />
                                             </motion.div>
 
@@ -191,9 +212,13 @@ export default function Footer() {
                                                 </label>
                                                 <input
                                                     id="footer-phone"
+                                                    name="phone"
                                                     type="tel"
                                                     placeholder="+123 456 789"
                                                     className="input"
+                                                    value={formData.phone}
+                                                    onChange={handleInputChange}
+                                                    required
                                                 />
                                             </motion.div>
 
@@ -206,58 +231,23 @@ export default function Footer() {
                                                 </label>
 
                                                 <div className="grid gap-3 grid-cols-1">
-                                                    <div className="input flex items-center gap-3">
-                                                        <input
-                                                            type="checkbox"
-                                                            id="footer-product-photography"
-                                                            className="w-4 h-4 shrink-0"
-                                                        />
-                                                        <label
-                                                            htmlFor="footer-product-photography"
-                                                            className="text-sm md:text-base cursor-pointer"
-                                                        >
-                                                            Product Photography
-                                                        </label>
-                                                    </div>
-                                                    <div className="input flex items-center gap-3">
-                                                        <input
-                                                            type="checkbox"
-                                                            id="footer-product-video"
-                                                            className="w-4 h-4 shrink-0"
-                                                        />
-                                                        <label
-                                                            htmlFor="footer-product-video"
-                                                            className="text-sm md:text-base cursor-pointer"
-                                                        >
-                                                            Product Video Creation
-                                                        </label>
-                                                    </div>
-                                                    <div className="input flex items-center gap-3">
-                                                        <input
-                                                            type="checkbox"
-                                                            id="footer-digital-marketing"
-                                                            className="w-4 h-4 shrink-0"
-                                                        />
-                                                        <label
-                                                            htmlFor="footer-digital-marketing"
-                                                            className="text-sm md:text-base cursor-pointer"
-                                                        >
-                                                            Digital Marketing
-                                                        </label>
-                                                    </div>
-                                                    <div className="input flex items-center gap-3">
-                                                        <input
-                                                            type="checkbox"
-                                                            id="footer-web-design"
-                                                            className="w-4 h-4 shrink-0"
-                                                        />
-                                                        <label
-                                                            htmlFor="footer-web-design"
-                                                            className="text-sm md:text-base cursor-pointer"
-                                                        >
-                                                            Web Design and Development
-                                                        </label>
-                                                    </div>
+                                                    {['Product Photography', 'Product Video Creation', 'Digital Marketing', 'Web Design and Development'].map((service) => (
+                                                        <div key={service} className="input flex items-center gap-3">
+                                                            <input
+                                                                type="checkbox"
+                                                                id={`footer-${service.toLowerCase().replace(/ /g, '-')}`}
+                                                                className="w-4 h-4 shrink-0"
+                                                                checked={formData.services.includes(service)}
+                                                                onChange={(e) => handleCheckboxChange(service, e.target.checked)}
+                                                            />
+                                                            <label
+                                                                htmlFor={`footer-${service.toLowerCase().replace(/ /g, '-')}`}
+                                                                className="text-sm md:text-base cursor-pointer"
+                                                            >
+                                                                {service}
+                                                            </label>
+                                                        </div>
+                                                    ))}
                                                 </div>
                                             </motion.div>
 
@@ -273,10 +263,17 @@ export default function Footer() {
                                                 </label>
                                                 <textarea
                                                     id="footer-message"
+                                                    name="message"
                                                     placeholder="Write your Message"
                                                     className="textarea min-h-24"
                                                     rows={4}
+                                                    value={formData.message}
+                                                    onChange={handleInputChange}
                                                 />
+                                            </motion.div>
+
+                                            <motion.div variants={fadeInUp}>
+                                                <ReCaptchaWrapper onVerify={setTurnstileToken} />
                                             </motion.div>
 
                                             <motion.button
@@ -285,8 +282,9 @@ export default function Footer() {
                                                 className="btn w-full"
                                                 whileHover={{ scale: 1.02 }}
                                                 whileTap={{ scale: 0.98 }}
+                                                disabled={isSubmitting}
                                             >
-                                                Become Our Partner
+                                                {isSubmitting ? 'Sending...' : 'Become Our Partner'}
                                             </motion.button>
                                         </div>
                                     </motion.form>

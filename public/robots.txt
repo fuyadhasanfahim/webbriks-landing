@@ -1,0 +1,8 @@
+User-agent: *
+Allow: /
+
+# Disallow admin or private pages (if any in future)
+# Disallow: /admin/
+
+# Sitemap
+Sitemap: https://webbriks.com/sitemap.xml

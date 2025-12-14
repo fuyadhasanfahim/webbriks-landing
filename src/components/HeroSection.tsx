@@ -3,6 +3,9 @@
 import { motion } from 'framer-motion';
 import { IconCircleArrowRightFilled } from '@tabler/icons-react';
 import Image from 'next/image';
+import { useState } from 'react';
+import { useContactForm } from '@/hooks/useContactForm';
+import ReCaptchaWrapper from './ReCaptchaWrapper';
 
 const fadeInUp = {
     hidden: { opacity: 0, y: 30 },
@@ -23,6 +26,15 @@ const staggerContainer = {
 };
 
 export default function HeroSection() {
+    const { formData, isSubmitting, handleInputChange, handleCheckboxChange, submitForm } = useContactForm();
+    const [turnstileToken, setTurnstileToken] = useState<string>('');
+
+    const handleSubmit = async (e: React.FormEvent) => {
+        e.preventDefault();
+        await submitForm(turnstileToken || undefined);
+        setTurnstileToken('');
+    };
+
     return (
         <div className="grid grid-cols-1 lg:grid-cols-5 items-start lg:items-center gap-8 md:gap-10 lg:gap-16">
             <motion.div
@@ -74,12 +86,9 @@ export default function HeroSection() {
                 variants={slideInRight}
                 transition={{ duration: 0.8, delay: 0.2 }}
             >
-                {/* Enhanced glow effect */}
                 <div className="hidden lg:block absolute size-180 bg-[#0ce4d1]/50 -top-1/5 -right-1/4 blur-[150px] rounded-full -z-10 animate-pulse" />
 
-                {/* iOS-style glassmorphism card */}
                 <div className="relative backdrop-blur-2xl bg-gradient-to-br from-white/15 to-white/5 rounded-[25px] p-6 md:p-8 lg:p-10 space-y-6 border border-white/30 w-full mx-auto shadow hover:shadow-[0_0_40px_rgba(108,255,241,0.3)] transition-all duration-500 bg-[#009588]/30">
-                    {/* Inner glow */}
                     <div className="absolute inset-0 rounded-[25px] bg-gradient-to-br from-cyan-400/10 via-transparent to-teal-400/10 pointer-events-none" />
 
                     <h3 className="relative font-nunito font-extrabold text-2xl md:text-[30px] leading-tight md:leading-[1.2] text-center text-white drop-shadow-lg">
@@ -90,116 +99,89 @@ export default function HeroSection() {
                         variants={staggerContainer}
                         initial="hidden"
                         animate="visible"
+                        onSubmit={handleSubmit}
                     >
                         <div className="grid gap-4 font-inter">
                             <motion.div variants={fadeInUp} className="grid gap-2">
-                                <label htmlFor="name" className="label">
-                                    Name
-                                </label>
+                                <label htmlFor="name" className="label">Name</label>
                                 <input
                                     id="name"
+                                    name="name"
                                     type="text"
                                     placeholder="Name"
                                     className="input"
+                                    value={formData.name}
+                                    onChange={handleInputChange}
+                                    required
                                 />
                             </motion.div>
 
                             <motion.div variants={fadeInUp} className="grid gap-2">
-                                <label htmlFor="email" className="label">
-                                    Email
-                                </label>
+                                <label htmlFor="email" className="label">Email</label>
                                 <input
                                     id="email"
+                                    name="email"
                                     type="email"
                                     placeholder="Email"
                                     className="input"
+                                    value={formData.email}
+                                    onChange={handleInputChange}
+                                    required
                                 />
                             </motion.div>
 
                             <motion.div variants={fadeInUp} className="grid gap-2">
-                                <label htmlFor="phone" className="label">
-                                    Phone
-                                </label>
+                                <label htmlFor="phone" className="label">Phone</label>
                                 <input
                                     id="phone"
+                                    name="phone"
                                     type="tel"
                                     placeholder="+123 456 789"
                                     className="input"
+                                    value={formData.phone}
+                                    onChange={handleInputChange}
+                                    required
                                 />
                             </motion.div>
 
-                            <motion.div
-                                variants={fadeInUp}
-                                className="grid gap-3 w-full"
-                            >
+                            <motion.div variants={fadeInUp} className="grid gap-3 w-full">
                                 <label className="label">Select Service</label>
-
                                 <div className="grid gap-3 grid-cols-1">
-                                    <div className="input flex items-center gap-3">
-                                        <input
-                                            type="checkbox"
-                                            id="product-photography"
-                                            className="w-4 h-4 shrink-0"
-                                        />
-                                        <label
-                                            htmlFor="product-photography"
-                                            className="text-sm md:text-base cursor-pointer"
-                                        >
-                                            Product Photography
-                                        </label>
-                                    </div>
-                                    <div className="input flex items-center gap-3">
-                                        <input
-                                            type="checkbox"
-                                            id="product-video"
-                                            className="w-4 h-4 shrink-0"
-                                        />
-                                        <label
-                                            htmlFor="product-video"
-                                            className="text-sm md:text-base cursor-pointer"
-                                        >
-                                            Product Video Creation
-                                        </label>
-                                    </div>
-                                    <div className="input flex items-center gap-3">
-                                        <input
-                                            type="checkbox"
-                                            id="digital-marketing"
-                                            className="w-4 h-4 shrink-0"
-                                        />
-                                        <label
-                                            htmlFor="digital-marketing"
-                                            className="text-sm md:text-base cursor-pointer"
-                                        >
-                                            Digital Marketing
-                                        </label>
-                                    </div>
-                                    <div className="input flex items-center gap-3">
-                                        <input
-                                            type="checkbox"
-                                            id="web-design"
-                                            className="w-4 h-4 shrink-0"
-                                        />
-                                        <label
-                                            htmlFor="web-design"
-                                            className="text-sm md:text-base cursor-pointer"
-                                        >
-                                            Web Design and Development
-                                        </label>
-                                    </div>
+                                    {['Product Photography', 'Product Video Creation', 'Digital Marketing', 'Web Design and Development'].map((service) => (
+                                        <div key={service} className="input flex items-center gap-3">
+                                            <input
+                                                type="checkbox"
+                                                id={service.toLowerCase().replace(/ /g, '-')}
+                                                className="w-4 h-4 shrink-0"
+                                                checked={formData.services.includes(service)}
+                                                onChange={(e) => handleCheckboxChange(service, e.target.checked)}
+                                            />
+                                            <label
+                                                htmlFor={service.toLowerCase().replace(/ /g, '-')}
+                                                className="text-sm md:text-base cursor-pointer"
+                                            >
+                                                {service}
+                                            </label>
+                                        </div>
+                                    ))}
                                 </div>
                             </motion.div>
 
                             <motion.div variants={fadeInUp} className="grid gap-2">
-                                <label htmlFor="message" className="label">
-                                    Message
-                                </label>
+                                <label htmlFor="message" className="label">Message</label>
                                 <textarea
                                     id="message"
+                                    name="message"
                                     placeholder="Write your Message"
                                     className="textarea min-h-24"
                                     rows={4}
+                                    value={formData.message}
+                                    onChange={handleInputChange}
                                 />
+                            </motion.div>
+
+                            <motion.div variants={fadeInUp}>
+                                <ReCaptchaWrapper onVerify={setTurnstileToken} />
                             </motion.div>
 
                             <motion.button
@@ -208,8 +190,9 @@ export default function HeroSection() {
                                 className="btn w-full"
                                 whileHover={{ scale: 1.02 }}
                                 whileTap={{ scale: 0.98 }}
+                                disabled={isSubmitting}
                             >
-                                Become Our Partner
+                                {isSubmitting ? 'Sending...' : 'Become Our Partner'}
                             </motion.button>
                         </div>
                     </motion.form>
