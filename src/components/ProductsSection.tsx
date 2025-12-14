@@ -24,13 +24,15 @@ export default function ProductsSection() {
                         viewport={{ once: true, amount: 0.3 }}
                         variants={fadeInLeft}
                         transition={{ duration: 0.6 }}
+                        whileHover={{ scale: 1.02 }}
+                        className="overflow-hidden rounded-[15px]"
                     >
                         <Image
                             src={'/video.png'}
                             alt="video"
                             height={413}
                             width={561}
-                            className="rounded-[15px] border border-gray-200 w-full h-auto"
+                            className="rounded-[15px] border border-gray-200 w-full h-auto shadow-xl hover:shadow-2xl transition-shadow duration-500"
                         />
                     </motion.figure>
                     <motion.div

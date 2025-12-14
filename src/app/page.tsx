@@ -1,6 +1,7 @@
 'use client';
 
 import Image from 'next/image';
+import { motion } from 'framer-motion';
 import Navbar from '@/components/Navbar';
 import HeroSection from '@/components/HeroSection';
 import ProductsSection from '@/components/ProductsSection';
@@ -14,6 +15,7 @@ export default function LandingPage() {
         <main>
             {/* Hero Section with Background */}
             <section className="relative min-h-screen overflow-hidden">
+                {/* Background image */}
                 <div className="absolute top-0 left-0 w-full h-full -z-20">
                     <figure className="w-full h-full">
                         <Image
@@ -26,16 +28,29 @@ export default function LandingPage() {
                     </figure>
                 </div>
 
-                <div
+                {/* Enhanced gradient overlay with subtle animation */}
+                <motion.div
                     className="absolute top-0 left-0 w-full h-full backdrop-blur-3xl -z-10"
                     style={{
                         background:
-                            'radial-gradient(circle, rgba(0, 47, 43, 1) 0%, rgba(0, 149, 136, 1) 100%)',
-                        opacity: 0.9,
+                            'radial-gradient(circle at 30% 50%, rgba(0, 149, 136, 0.92) 0%, rgba(0, 47, 43, 0.95) 100%)',
+                    }}
+                    animate={{
+                        background: [
+                            'radial-gradient(circle at 30% 50%, rgba(0, 149, 136, 0.92) 0%, rgba(0, 47, 43, 0.95) 100%)',
+                            'radial-gradient(circle at 70% 50%, rgba(0, 149, 136, 0.92) 0%, rgba(0, 47, 43, 0.95) 100%)',
+                            'radial-gradient(circle at 30% 50%, rgba(0, 149, 136, 0.92) 0%, rgba(0, 47, 43, 0.95) 100%)',
+                        ],
+                    }}
+                    transition={{
+                        duration: 10,
+                        repeat: Infinity,
+                        ease: 'easeInOut',
                     }}
                 />
 
-                <div className="absolute -bottom-20 -left-40 min-w-1200 w-full h-100 backdrop-blur-3xl z-0 -rotate-10 bg-white opacity-90" />
+                {/* Decorative white wave - positioned higher and pure white */}
+                <div className="absolute bottom-6 -left-30 w-1000 h-160 bg-white shadow-2xl -rotate-[20deg]" />
 
                 <div className="relative z-10 container mx-auto px-4 py-6 md:py-8 lg:py-12">
                     <div className="w-full max-w-7xl mx-auto space-y-8 md:space-y-12 lg:space-y-16">

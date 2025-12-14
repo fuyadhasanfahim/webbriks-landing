@@ -34,41 +34,31 @@ const ServiceCard = ({
     return (
         <motion.div
             variants={fadeInUp}
-            whileHover={{ scale: 1.03, y: -5 }}
+            whileHover={{ scale: 1.03, y: -8 }}
             transition={{ duration: 0.3 }}
-            className="relative overflow-hidden w-full h-auto rounded-[15px]"
+            className="relative overflow-hidden w-full h-auto rounded-[20px] group"
         >
-            {/* Background Image */}
-            <div className="absolute inset-0 z-0">
-                <figure className="w-full h-full">
-                    <Image
-                        src="/hero.png"
-                        alt="hero image"
-                        width={1920}
-                        height={800}
-                        className="w-full h-full object-cover"
-                    />
-                </figure>
-            </div>
-
-            {/* Overlay with blur and gradient */}
+            {/* Clean gradient background - no image */}
             <div
-                className="absolute inset-0 backdrop-blur-3xl z-10"
+                className="absolute inset-0 z-0"
                 style={{
                     background:
-                        'radial-gradient(circle, rgba(0, 47, 43, 1) 0%, rgba(0, 149, 136, 1) 100%)',
-                    opacity: 0.9,
+                        'linear-gradient(135deg, rgba(0, 149, 136, 1) 0%, rgba(0, 47, 43, 1) 100%)',
                 }}
             />
 
+            {/* Subtle gradient overlay for depth */}
+            <div className="absolute inset-0 z-10 bg-gradient-to-br from-cyan-400/10 via-transparent to-transparent opacity-50 group-hover:opacity-100 transition-opacity duration-500" />
+
             {/* Content */}
-            <div className="relative z-20 space-y-6 p-6 text-white">
-                <div className="flex items-center justify-center p-2 rounded-md bg-white/10 size-19.5 ml-auto">
-                    <Icon size={40} className="text-white" />
+            <div className="relative z-20 space-y-6 p-6 md:p-8">
+                {/* Icon container with glass effect */}
+                <div className="flex items-center justify-center p-3 rounded-xl bg-white/15 backdrop-blur-md size-20 ml-auto border border-white/20 shadow-lg group-hover:shadow-[0_0_30px_rgba(108,255,241,0.4)] transition-all duration-500">
+                    <Icon size={40} className="text-white drop-shadow-lg" />
                 </div>
 
                 <div className="space-y-6">
-                    <h3 className="text-2xl md:text-[30px] leading-tight font-semibold font-nunito">
+                    <h3 className="text-2xl md:text-[30px] leading-tight font-semibold font-nunito text-white">
                         {title}
                     </h3>
 
@@ -81,7 +71,7 @@ const ServiceCard = ({
                         />
                     </figure>
 
-                    <ul className="space-y-2 list-disc list-inside text-sm md:text-base leading-relaxed md:leading-8 font-inter">
+                    <ul className="space-y-2 list-disc list-inside text-sm md:text-base leading-relaxed md:leading-8 font-inter text-white">
                         {items.map((item, index) => (
                             <li key={index}>{item}</li>
                         ))}

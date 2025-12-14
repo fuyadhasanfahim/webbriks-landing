@@ -16,17 +16,43 @@ body {
 }
 
 .btn {
-    @apply rounded-[15px] py-2.5 px-4 md:py-3 md:px-6 bg-[#F27021] text-[#FFFFFF] inline-flex items-center justify-center gap-2 font-inter font-semibold text-base md:text-[18px] transition-all hover:bg-[#d96320] active:scale-95;
+    @apply rounded-[15px] py-2.5 px-4 md:py-3 md:px-6 bg-[#F27021] text-[#FFFFFF] inline-flex items-center justify-center gap-2 font-inter font-semibold text-base md:text-[18px] transition-all hover:bg-[#d96320] active:scale-95 shadow-lg hover:shadow-xl;
 }
 
 .label {
-    @apply font-semibold text-sm md:text-[16px] text-white;
+    @apply font-semibold text-sm md:text-[16px] text-white drop-shadow-sm;
 }
 
 .input {
-    @apply bg-white/10 backdrop-blur-md border-[#6CFFF1]/50 border text-white font-normal text-sm md:text-[16px] p-2 md:p-2.5 rounded-[5px] placeholder:text-white/60 w-full focus:outline-none focus:border-[#6CFFF1] focus:ring-2 focus:ring-[#6CFFF1]/30 transition-all;
+    @apply bg-white/10 backdrop-blur-md border-[#6CFFF1]/50 border text-white font-normal text-sm md:text-[16px] p-2 md:p-2.5 rounded-[5px] placeholder:text-white/60 w-full focus:outline-none focus:border-[#6CFFF1] focus:ring-2 focus:ring-[#6CFFF1]/30 transition-all shadow-sm hover:shadow-md;
 }
 
 .textarea {
-    @apply bg-white/10 backdrop-blur-md border-[#6CFFF1]/50 border text-white font-normal text-sm md:text-[16px] p-2 md:p-2.5 rounded-[5px] placeholder:text-white/60 w-full min-h-24 md:min-h-32 resize-none focus:outline-none focus:border-[#6CFFF1] focus:ring-2 focus:ring-[#6CFFF1]/30 transition-all;
+    @apply bg-white/10 backdrop-blur-md border-[#6CFFF1]/50 border text-white font-normal text-sm md:text-[16px] p-2 md:p-2.5 rounded-[5px] placeholder:text-white/60 w-full min-h-24 md:min-h-32 resize-none focus:outline-none focus:border-[#6CFFF1] focus:ring-2 focus:ring-[#6CFFF1]/30 transition-all shadow-sm hover:shadow-md;
 }
+
+/* iOS-style Glassmorphism Utilities */
+.glass-card {
+    @apply backdrop-blur-2xl bg-white/10 border border-white/20 shadow-2xl;
+}
+
+.glass-card-dark {
+    @apply backdrop-blur-2xl bg-black/20 border border-white/10 shadow-2xl;
+}
+
+.glass-tint-cyan {
+    @apply backdrop-blur-xl bg-gradient-to-br from-cyan-500/20 to-teal-500/20 border border-cyan-400/30;
+}
+
+.glass-tint-orange {
+    @apply backdrop-blur-xl bg-gradient-to-br from-orange-500/20 to-amber-500/20 border border-orange-400/30;
+}
+
+.glow-cyan {
+    box-shadow: 0 0 20px rgba(108, 255, 241, 0.3), 0 0 40px rgba(108, 255, 241, 0.1);
+}
+
+.glow-orange {
+    box-shadow: 0 0 20px rgba(242, 112, 33, 0.3), 0 0 40px rgba(242, 112, 33, 0.1);
+}
+

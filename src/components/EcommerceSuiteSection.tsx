@@ -72,6 +72,8 @@ export default function EcommerceSuiteSection() {
                         viewport={{ once: true, amount: 0.3 }}
                         variants={fadeInRight}
                         transition={{ duration: 0.6, delay: 0.2 }}
+                        whileHover={{ scale: 1.05, rotate: 2 }}
+                        className="drop-shadow-2xl"
                     >
                         <Image
                             src={'/steptodown 1.png'}

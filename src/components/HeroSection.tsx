@@ -74,9 +74,15 @@ export default function HeroSection() {
                 variants={slideInRight}
                 transition={{ duration: 0.8, delay: 0.2 }}
             >
-                <div className="hidden lg:block absolute size-180 bg-[#0ce4d1]/50 -top-1/5 -right-1/4 blur-[132px] rounded-full -z-10" />
-                <div className="bg-[#009588]/30 backdrop-blur-xl rounded-[25px] p-6 md:p-8 lg:p-10 space-y-6 border border-white/20 w-full mx-auto">
-                    <h3 className="font-nunito font-extrabold text-2xl md:text-[30px] leading-tight md:leading-[1.2] text-center text-white">
+                {/* Enhanced glow effect */}
+                <div className="hidden lg:block absolute size-180 bg-[#0ce4d1]/50 -top-1/5 -right-1/4 blur-[150px] rounded-full -z-10 animate-pulse" />
+
+                {/* iOS-style glassmorphism card */}
+                <div className="relative backdrop-blur-2xl bg-gradient-to-br from-white/15 to-white/5 rounded-[25px] p-6 md:p-8 lg:p-10 space-y-6 border border-white/30 w-full mx-auto shadow hover:shadow-[0_0_40px_rgba(108,255,241,0.3)] transition-all duration-500 bg-[#009588]/30">
+                    {/* Inner glow */}
+                    <div className="absolute inset-0 rounded-[25px] bg-gradient-to-br from-cyan-400/10 via-transparent to-teal-400/10 pointer-events-none" />
+
+                    <h3 className="relative font-nunito font-extrabold text-2xl md:text-[30px] leading-tight md:leading-[1.2] text-center text-white drop-shadow-lg">
                         Be a Part of Us
                     </h3>
 

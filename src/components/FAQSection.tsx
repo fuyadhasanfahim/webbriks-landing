@@ -86,7 +86,7 @@ export default function FAQSection() {
                                 <motion.div
                                     key={index}
                                     variants={fadeInUp}
-                                    className="bg-white border-2 rounded-2xl overflow-hidden transition-all duration-300 hover:shadow-lg"
+                                    className="bg-white/95 backdrop-blur-md border-2 rounded-2xl overflow-hidden transition-all duration-300 shadow-lg hover:shadow-2xl hover:shadow-cyan-500/10"
                                     style={{
                                         borderColor:
                                             openIndex === index
@@ -96,17 +96,19 @@ export default function FAQSection() {
                                 >
                                     <motion.button
                                         onClick={() => toggleAccordion(index)}
-                                        className="w-full px-6 py-5 flex items-center justify-between text-left transition-colors duration-200"
+                                        className="w-full px-6 py-5 flex items-center justify-between text-left transition-all duration-300"
                                         style={{
                                             backgroundColor:
                                                 openIndex === index
                                                     ? '#F0FDFA'
                                                     : 'white',
                                         }}
-                                        whileHover={{ backgroundColor: '#F9FAFB' }}
+                                        whileHover={{
+                                            backgroundColor: openIndex === index ? '#E0F9F6' : '#F9FAFB'
+                                        }}
                                     >
                                         <span
-                                            className="font-semibold text-base md:text-lg pr-4"
+                                            className="font-semibold text-base md:text-lg pr-4 transition-colors duration-300"
                                             style={{
                                                 color:
                                                     openIndex === index
@@ -117,24 +119,27 @@ export default function FAQSection() {
                                             {faq.question}
                                         </span>
                                         <motion.div
-                                            className="shrink-0 w-8 h-8 rounded-full flex items-center justify-center transition-all duration-200"
+                                            className="shrink-0 w-10 h-10 rounded-full flex items-center justify-center transition-all duration-300 shadow-md"
                                             style={{
                                                 backgroundColor:
                                                     openIndex === index
                                                         ? '#009588'
                                                         : '#F3F4F6',
+                                                boxShadow: openIndex === index
+                                                    ? '0 0 20px rgba(0, 149, 136, 0.3)'
+                                                    : 'none'
                                             }}
                                             whileHover={{ scale: 1.1 }}
                                             whileTap={{ scale: 0.9 }}
                                         >
                                             {openIndex === index ? (
                                                 <IconMinus
-                                                    size={18}
+                                                    size={20}
                                                     className="text-white"
                                                 />
                                             ) : (
                                                 <IconPlus
-                                                    size={18}
+                                                    size={20}
                                                     style={{
                                                         color: '#009588',
                                                     }}
