@@ -89,7 +89,7 @@ export default function Footer() {
 
                                 <motion.figure variants={fadeInUp}>
                                     <Image
-                                        src="/vector 2.svg"
+                                        src="https://res.cloudinary.com/dny7zfbg9/image/upload/v1765727070/py1vxwuccvjayyzriqw3.svg"
                                         alt="vector"
                                         height={80}
                                         width={255}

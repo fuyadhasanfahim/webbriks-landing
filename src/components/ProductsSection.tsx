@@ -28,7 +28,7 @@ export default function ProductsSection() {
                         className="overflow-hidden rounded-[15px]"
                     >
                         <Image
-                            src={'/video.png'}
+                            src={'https://res.cloudinary.com/dny7zfbg9/image/upload/v1765727071/kvo6ot56jxugypshv4dk.png'}
                             alt="video"
                             height={413}
                             width={561}

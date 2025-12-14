@@ -26,10 +26,12 @@ const ServiceCard = ({
     icon: Icon,
     title,
     items,
+    image
 }: {
     icon: React.ElementType;
     title: string;
     items: string[];
+    image: string
 }) => {
     return (
         <motion.div
@@ -38,20 +40,30 @@ const ServiceCard = ({
             transition={{ duration: 0.3 }}
             className="relative overflow-hidden w-full h-auto rounded-[20px] group"
         >
-            {/* Clean gradient background - no image */}
+            {/* Background Image */}
             <div
                 className="absolute inset-0 z-0"
                 style={{
+                    backgroundImage: `url(${image})`,
+                    backgroundSize: 'cover',
+                    backgroundPosition: 'center',
+                }}
+            />
+
+            {/* Gradient overlay on top of image */}
+            <div
+                className="absolute inset-0 z-10"
+                style={{
                     background:
-                        'linear-gradient(135deg, rgba(0, 149, 136, 1) 0%, rgba(0, 47, 43, 1) 100%)',
+                        'linear-gradient(135deg, rgba(0, 149, 136, 0.95) 0%, rgba(0, 47, 43, 0.95) 100%)',
                 }}
             />
 
             {/* Subtle gradient overlay for depth */}
-            <div className="absolute inset-0 z-10 bg-gradient-to-br from-cyan-400/10 via-transparent to-transparent opacity-50 group-hover:opacity-100 transition-opacity duration-500" />
+            <div className="absolute inset-0 z-20 bg-gradient-to-br from-cyan-400/10 via-transparent to-transparent opacity-50 group-hover:opacity-100 transition-opacity duration-500" />
 
             {/* Content */}
-            <div className="relative z-20 space-y-6 p-6 md:p-8">
+            <div className="relative z-30 space-y-6 p-6 md:p-8">
                 {/* Icon container with glass effect */}
                 <div className="flex items-center justify-center p-3 rounded-xl bg-white/15 backdrop-blur-md size-20 ml-auto border border-white/20 shadow-lg group-hover:shadow-[0_0_30px_rgba(108,255,241,0.4)] transition-all duration-500">
                     <Icon size={40} className="text-white drop-shadow-lg" />
@@ -64,7 +76,7 @@ const ServiceCard = ({
 
                     <figure>
                         <Image
-                            src="/vector 1.svg"
+                            src="https://res.cloudinary.com/dny7zfbg9/image/upload/v1765727070/qimccruzshkklv4qlfut.svg"
                             alt="vector 2"
                             height={8}
                             width={264}
@@ -102,6 +114,7 @@ export default function ServicesSection() {
                 'Browser Side Tracking',
                 'Server Side Tracking',
             ],
+            image: "https://res.cloudinary.com/dny7zfbg9/image/upload/v1765727138/t0wlww2uj8nvpbilucpm.png"
         },
         {
             icon: IconCamera,
@@ -112,6 +125,7 @@ export default function ServicesSection() {
                 'Model Reels',
                 'Motion Video Ads',
             ],
+            image: "https://res.cloudinary.com/dny7zfbg9/image/upload/v1765727138/pwtfdt0iq9gbfclhznhw.png"
         },
         {
             icon: IconGardenCart,
@@ -122,12 +136,13 @@ export default function ServicesSection() {
                 'Fully SEO Friendly',
                 'Super Fast Loading',
             ],
+            image: "https://res.cloudinary.com/dny7zfbg9/image/upload/v1765727138/m7lm2wgq3xhrhj2jpyil.png"
         },
     ];
 
     return (
         <section className="z-10 container mx-auto px-4 py-8 md:py-12 lg:py-16 bg-white">
-            <div className="w-full max-w-6xl mx-auto space-y-8 md:space-y-12 lg:space-y-16">
+            <div className="w-full max-w-7xl mx-auto space-y-8 md:space-y-12 lg:space-y-16">
                 <motion.div
                     className="space-y-4 lg:space-y-6"
                     initial="hidden"
@@ -142,7 +157,7 @@ export default function ServicesSection() {
                         </h2>
                         <figure className="hidden md:block mx-auto">
                             <Image
-                                src="/vector.svg"
+                                src="https://res.cloudinary.com/dny7zfbg9/image/upload/v1765727071/xwqyoruuj2r9bk7eihac.svg"
                                 alt="hero sign"
                                 width={408}
                                 height={53}

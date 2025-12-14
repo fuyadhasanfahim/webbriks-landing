@@ -66,7 +66,7 @@ export default function FAQSection() {
                             </h2>
                             <figure className="hidden md:block mx-auto">
                                 <Image
-                                    src="/vector.svg"
+                                    src="https://res.cloudinary.com/dny7zfbg9/image/upload/v1765727071/xwqyoruuj2r9bk7eihac.svg"
                                     alt="hero sign"
                                     width={408}
                                     height={53}

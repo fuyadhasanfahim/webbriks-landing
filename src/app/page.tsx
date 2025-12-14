@@ -19,7 +19,7 @@ export default function LandingPage() {
                 <div className="absolute top-0 left-0 w-full h-full -z-20">
                     <figure className="w-full h-full">
                         <Image
-                            src="/hero.png"
+                            src="https://res.cloudinary.com/dny7zfbg9/image/upload/v1765728137/w0tmqqiyl3x9muzl4hud.png"
                             alt="hero image"
                             width={1920}
                             height={800}
@@ -33,13 +33,13 @@ export default function LandingPage() {
                     className="absolute top-0 left-0 w-full h-full backdrop-blur-3xl -z-10"
                     style={{
                         background:
-                            'radial-gradient(circle at 30% 50%, rgba(0, 149, 136, 0.92) 0%, rgba(0, 47, 43, 0.95) 100%)',
+                            'radial-gradient(circle at 30% 50%, rgba(0, 149, 136, 0.75) 0%, rgba(0, 47, 43, 0.88) 100%)',
                     }}
                     animate={{
                         background: [
-                            'radial-gradient(circle at 30% 50%, rgba(0, 149, 136, 0.92) 0%, rgba(0, 47, 43, 0.95) 100%)',
-                            'radial-gradient(circle at 70% 50%, rgba(0, 149, 136, 0.92) 0%, rgba(0, 47, 43, 0.95) 100%)',
-                            'radial-gradient(circle at 30% 50%, rgba(0, 149, 136, 0.92) 0%, rgba(0, 47, 43, 0.95) 100%)',
+                            'radial-gradient(circle at 30% 50%, rgba(0, 149, 136, 0.75) 0%, rgba(0, 47, 43, 0.88) 100%)',
+                            'radial-gradient(circle at 70% 50%, rgba(0, 149, 136, 0.75) 0%, rgba(0, 47, 43, 0.88) 100%)',
+                            'radial-gradient(circle at 30% 50%, rgba(0, 149, 136, 0.75) 0%, rgba(0, 47, 43, 0.88) 100%)',
                         ],
                     }}
                     transition={{

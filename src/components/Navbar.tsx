@@ -12,8 +12,8 @@ export default function Navbar() {
         >
             <figure>
                 <Image
-                    src="/logo.png"
-                    alt="logo"
+                    src="https://res.cloudinary.com/dny7zfbg9/image/upload/v1765727070/iomlea1859jmdunarpbc.png"
+                    alt="webbriks logo"
                     height={39}
                     width={126}
                     className="w-auto h-8 md:h-10"

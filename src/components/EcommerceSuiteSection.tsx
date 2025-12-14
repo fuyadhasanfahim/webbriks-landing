@@ -41,9 +41,9 @@ export default function EcommerceSuiteSection() {
                             eCommerce Suite
                         </h2>
 
-                        <figure className="mx-auto w-fit">
+                        <figure className="w-fit">
                             <Image
-                                src="/vector.svg"
+                                src="https://res.cloudinary.com/dny7zfbg9/image/upload/v1765727071/xwqyoruuj2r9bk7eihac.svg"
                                 alt="hero sign"
                                 width={408}
                                 height={53}
@@ -76,7 +76,7 @@ export default function EcommerceSuiteSection() {
                         className="drop-shadow-2xl"
                     >
                         <Image
-                            src={'/steptodown 1.png'}
+                            src={'https://res.cloudinary.com/dny7zfbg9/image/upload/v1765727071/v5vlobu79jp2024vtchv.png'}
                             alt="step to down"
                             width={469}
                             height={701}
