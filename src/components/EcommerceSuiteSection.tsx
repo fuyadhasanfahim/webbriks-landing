@@ -60,6 +60,10 @@ export default function EcommerceSuiteSection() {
                             className="btn mx-auto"
                             whileHover={{ scale: 1.05 }}
                             whileTap={{ scale: 0.95 }}
+                            onClick={() => {
+                                const formElement = document.getElementById('footer-form');
+                                formElement?.scrollIntoView({ behavior: 'smooth', block: 'center' });
+                            }}
                         >
                             I'm Interested to be a partner
                             <IconCircleArrowRightFilled size={20} />

@@ -93,6 +93,10 @@ const ServiceCard = ({
                         className="btn w-full"
                         whileHover={{ scale: 1.02 }}
                         whileTap={{ scale: 0.98 }}
+                        onClick={() => {
+                            const formElement = document.getElementById('footer-form');
+                            formElement?.scrollIntoView({ behavior: 'smooth', block: 'center' });
+                        }}
                     >
                         I'm Interested <IconCircleArrowRightFilled size={20} />
                     </motion.button>

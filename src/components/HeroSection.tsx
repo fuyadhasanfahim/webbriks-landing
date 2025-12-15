@@ -73,7 +73,14 @@ export default function HeroSection() {
                         className="w-full max-w-md"
                     />
                 </motion.figure>
-                <motion.button variants={fadeInUp} className="btn w-full md:w-auto">
+                <motion.button
+                    variants={fadeInUp}
+                    className="btn w-full md:w-auto"
+                    onClick={() => {
+                        const formElement = document.getElementById('partner-form');
+                        formElement?.scrollIntoView({ behavior: 'smooth', block: 'center' });
+                    }}
+                >
                     I'm Interested to be a partner
                     <IconCircleArrowRightFilled size={20} />
                 </motion.button>
@@ -88,7 +95,10 @@ export default function HeroSection() {
             >
                 <div className="hidden lg:block absolute size-180 bg-[#0ce4d1]/50 -top-1/5 -right-1/4 blur-[150px] rounded-full -z-10 animate-pulse" />
 
-                <div className="relative backdrop-blur-2xl bg-gradient-to-br from-white/15 to-white/5 rounded-[25px] p-6 md:p-8 lg:p-10 space-y-6 border border-white/30 w-full mx-auto shadow hover:shadow-[0_0_40px_rgba(108,255,241,0.3)] transition-all duration-500 bg-[#009588]/50">
+                <div
+                    id="partner-form"
+                    className="relative backdrop-blur-2xl bg-gradient-to-br from-white/15 to-white/5 rounded-[25px] p-6 md:p-8 lg:p-10 space-y-6 border border-white/30 w-full mx-auto shadow hover:shadow-[0_0_40px_rgba(108,255,241,0.3)] transition-all duration-500 bg-[#009588]/50"
+                >
                     <div className="absolute inset-0 rounded-[25px] bg-gradient-to-br from-cyan-400/10 via-transparent to-teal-400/10 pointer-events-none" />
 
                     <h3 className="relative font-nunito font-extrabold text-2xl md:text-[30px] leading-tight md:leading-[1.2] text-center text-white drop-shadow-lg">

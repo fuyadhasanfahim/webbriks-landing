@@ -140,7 +140,10 @@ export default function Footer() {
                                 <div className="hidden lg:block absolute size-180 bg-[#0ce4d1]/50 -top-1/5 -right-1/4 blur-[150px] rounded-full -z-10 animate-pulse" />
 
                                 {/* iOS-style glassmorphism card */}
-                                <div className="relative backdrop-blur-2xl bg-gradient-to-br from-white/15 to-white/5 rounded-[25px] p-6 md:p-8 lg:p-10 space-y-6 border border-white/30 w-full mx-auto shadow-2xl hover:shadow-[0_0_40px_rgba(108,255,241,0.3)] transition-all duration-500">
+                                <div
+                                    id="footer-form"
+                                    className="relative backdrop-blur-2xl bg-gradient-to-br from-white/15 to-white/5 rounded-[25px] p-6 md:p-8 lg:p-10 space-y-6 border border-white/30 w-full mx-auto shadow-2xl hover:shadow-[0_0_40px_rgba(108,255,241,0.3)] transition-all duration-500"
+                                >
                                     {/* Inner glow */}
                                     <div className="absolute inset-0 rounded-[25px] bg-gradient-to-br from-cyan-400/10 via-transparent to-teal-400/10 pointer-events-none" />
 
